@@ -5,7 +5,7 @@ public class Sudoku {
     public static void main(String[] args) {
         int[][] sudokuBoard = {
                 {0, 0, 0},
-                {0, 3, 0},
+                {1, 3, 0},
                 {0, 0, 0}
         };
 
@@ -29,11 +29,16 @@ public class Sudoku {
                         if (isValid(board, row, col, num)) {
                             board[row][col] = num;
 
+                            System.out.println("Placing " + num + " at (" + row + ", " + col + ")");
+                            printBoard(board);
+
                             if (solve(board)) {
                                 return true;
                             }
 
                             board[row][col] = 0; // Backtrack if placing 'num' doesn't lead to a solution
+                            System.out.println("Backtracking at (" + row + ", " + col + ")");
+                            printBoard(board);
                         }
                     }
                     return false; // No valid number found for this cell
@@ -73,6 +78,7 @@ public class Sudoku {
             }
             System.out.println();
         }
+        System.out.println();
     }
 }
 
